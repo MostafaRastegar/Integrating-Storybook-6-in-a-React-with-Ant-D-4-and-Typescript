@@ -1,13 +1,13 @@
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
     {
-      name: '@storybook/preset-create-react-app',
+      name: "@storybook/preset-create-react-app",
       options: {
         craOverrides: {
-          fileLoaderExcludes: ['less'],
+          fileLoaderExcludes: ["less"],
         },
       },
     },
@@ -21,13 +21,17 @@ module.exports = {
     config.module.rules.push({
       test: /\.less$/,
       use: [
-        'style-loader',
-        'css-loader',
+        "style-loader",
+        "css-loader",
         {
-          loader: 'less-loader',
+          loader: "less-loader",
           options: {
             lessOptions: {
               javascriptEnabled: true,
+              modifyVars: {
+                "primary-color": "red",
+                "border-radius-base": "10px",
+              },
             },
           },
         },
@@ -38,7 +42,7 @@ module.exports = {
     return {
       ...config,
       plugins: config.plugins.filter((plugin) => {
-        if (plugin.constructor.name === 'ESLintWebpackPlugin') {
+        if (plugin.constructor.name === "ESLintWebpackPlugin") {
           return false;
         }
         return true;
